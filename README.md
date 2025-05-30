@@ -25,6 +25,16 @@ A responsive single-page React + Next.js application built using the **Gluestack
 
 ## 🛠️ Getting Started
 
+### 💾 Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/asaadmushtaq/frontend-demo-task
+
+   cd frontend-demo-task
+
+
 ### ✅ Prerequisites
 
 Make sure you have:
@@ -40,6 +50,7 @@ Install dependencies:
 - yarn
 
 # or
+
 
 - npm install
 
