@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
@@ -7,6 +8,7 @@ import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import { Image } from "@/components/ui/image";
+import { Spinner } from "@/components/ui/spinner";
 
 const loremText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Suspendisse et justo ac sapien vestibulum viverra. Nullam porta cursus pulvinar. 
@@ -21,6 +23,21 @@ const items = Array.from({ length: 25 }, (_, i) => ({
 }));
 
 export const TextListPage = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <Box className="flex-1 justify-center items-center h-screen">
+        <Spinner size="large" color="#11998E" />
+      </Box>
+    );
+  }
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={true}
@@ -28,12 +45,12 @@ export const TextListPage = () => {
       contentContainerStyle={{ padding: 20 }}
     >
       <VStack space="lg">
-        <Heading size="lg">Lorem Ipsum Text List</Heading>
+        <Heading size="lg">Text List</Heading>
         <VStack className="h-full" space="md">
           {items.map((item) => (
             <HStack
               key={item.id}
-              className="p-4 items-center border border-border-300 rounded-xl"
+              className="p-4 items-center rounded-xl bg-[#DFF6DD] shadow-[ -4px_-4px_6px_#ffffff,4px_4px_6px_#a3b18a ]"
               space="lg"
             >
               <Box className="relative h-20 w-20 rounded overflow-hidden">

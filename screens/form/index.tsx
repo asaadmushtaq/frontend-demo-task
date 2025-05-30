@@ -17,6 +17,8 @@ import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle } from "lucide-react-native";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -27,6 +29,7 @@ const formSchema = z.object({
 type FormSchemaType = z.infer<typeof formSchema>;
 
 const Form = () => {
+  const [loading, setLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -39,20 +42,25 @@ const Form = () => {
   const toast = useToast();
 
   const onSubmit = (data: FormSchemaType) => {
-    console.log("Form Data:", data);
-    toast.show({
-      placement: "bottom right",
-      render: ({ id }) => (
-        <Toast nativeID={id} variant="solid" action="success">
-          <ToastTitle>Form submitted successfully</ToastTitle>
-        </Toast>
-      ),
-    });
-    reset();
+    setLoading(true);
+
+    setTimeout(() => {
+      console.log("Form Data:", data);
+      toast.show({
+        placement: "bottom right",
+        render: ({ id }) => (
+          <Toast nativeID={id} variant="solid" action="success">
+            <ToastTitle>Form submitted successfully</ToastTitle>
+          </Toast>
+        ),
+      });
+      reset();
+      setLoading(false);
+    }, 1500);
   };
 
   return (
-    <VStack space="xl" className="max-w-[440px] w-full">
+    <VStack space="xl" className="max-w-[440px] w-full mx-auto">
       <FormControl isInvalid={!!errors.name}>
         <FormControlLabel>
           <FormControlLabelText>Name</FormControlLabelText>
@@ -132,8 +140,15 @@ const Form = () => {
         </FormControlError>
       </FormControl>
 
-      <Button onPress={handleSubmit(onSubmit)} className="mt-4">
-        <ButtonText>Submit</ButtonText>
+      <Button
+        onPress={handleSubmit(onSubmit)}
+        className="mt-4 bg-custom-gradient"
+        disabled={loading}
+      >
+        <ButtonText className="flex items-center justify-center gap-2">
+          Submit
+          {loading && <Spinner size="small" color="white" />}
+        </ButtonText>
       </Button>
     </VStack>
   );

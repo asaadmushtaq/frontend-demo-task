@@ -7,9 +7,10 @@ import { VStack } from "@/components/ui/vstack";
 import { Pressable } from "@/components/ui/pressable";
 import { type LucideIcon } from "lucide-react-native";
 import { ScrollView } from "@/components/ui/scroll-view";
+import { IconType } from "react-icons";
 
 type SidebarItem = {
-  iconName: LucideIcon | typeof Icon;
+  iconName: IconType; // react-icons components use IconType type
   iconText: string;
   id: string;
 };
@@ -28,32 +29,33 @@ export const Sidebar = ({
   return (
     <ScrollView className="h-full" contentContainerStyle={{ flexGrow: 1 }}>
       <VStack
-        className="h-full flex-1 w-[280px] py-4 pr-4 pl-8 items-center border-r border-border-300"
+        className="h-full flex-1 w-[280px] py-6 pr-8 pl-2 items-center border-r border-border-700 bg-background-900"
         space="xl"
       >
         <VStack className="w-full px-2 pt-3 pb-4" space="xs">
           {sidebarItems.map((item, index) => {
             const isActive = activeTab === item.id;
+            const IconComp = item.iconName;
 
             return (
               <Pressable
                 onPress={() => onTabSelect(item.id)}
                 key={index}
-                className={`flex-row px-4 py-3 items-center gap-2 rounded ${
-                  isActive ? "bg-background-950" : "bg-background-0"
+                className={`flex-row px-5 py-3 items-center gap-3 rounded-lg transition-colors duration-300 ${
+                  isActive
+                    ? "bg-custom-gradient shadow-lg"
+                    : "bg-background-900 hover:bg-custom-gradient"
                 }`}
               >
-                <Icon
-                  as={item.iconName}
-                  className={`${
-                    isActive
-                      ? "stroke-background-0 fill-background-800"
-                      : "stroke-background-800 fill-none"
+                <IconComp
+                  size={24}
+                  className={`transition-colors duration-300 ${
+                    isActive ? "text-white" : "text-gray-400"
                   }`}
                 />
                 <Text
-                  className={`${
-                    isActive ? "text-typography-0" : "text-typography-700"
+                  className={`font-semibold transition-colors duration-300 ${
+                    isActive ? "text-white" : "text-gray-300"
                   }`}
                 >
                   {item.iconText}
