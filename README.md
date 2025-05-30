@@ -1,28 +1,78 @@
-## Getting Started
+# Frontend Developer Demo App using Gluestack UI Starter Kit
 
-First, run the development server:
+A responsive single-page React + Next.js application built using the **Gluestack UI Starter Kit**. This project demonstrates key frontend concepts like tab switching, form validation, data display with loading spinners, and responsive card layouts.
 
-```bash
-yarn dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🚀 Built on **Next.js (App Router)** with **React Native Web**
+- 🎨 Styled with **Gluestack UI** and Tailwind-style utility classes
+- 🔄 Tabs: Toggle between Form, Text List, and Fetched API data
+- ✅ Zod + React Hook Form validation with Toast
+- 📄 Responsive Grid and Flex layouts
+- ⏳ Loaders for form submission and loading states
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+## 📦 Tech Stack
 
-## Learn More
+- **Next.js**
+- **Gluestack UI Starter Kit**
+- **React Hook Form + Zod**
+- **TypeScript**
+- **Tailwind-style Gluestack classNames**
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+## 🛠️ Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### ✅ Prerequisites
 
-## Deploy on Vercel
+Make sure you have:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+- Node.js `>=18.x`
+- Git `>=2.x`
+- Yarn or npm installed globally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+Install dependencies:
+
+- yarn
+
+# or
+
+- npm install
+
+---
+
+### 🚀 Running the Application
+
+---
+
+Start the development server:
+
+- yarn dev
+
+# or
+
+- npm run dev
+
+---
+
+### 📋 Usage
+
+- Use the sidebar buttons to switch between:
+
+- Form – with name, email, and message inputs + toast notifications
+
+- Text List – scrollable card list with image and text
+
+- API Data – fetch and view data
+
+- Loaders appear:
+
+- On form submission
+
+- While Text List loads
+
+- While API Data Loads
