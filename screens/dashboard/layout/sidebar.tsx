@@ -11,7 +11,7 @@ import { ScrollView } from "@/components/ui/scroll-view";
 type SidebarItem = {
   iconName: LucideIcon | typeof Icon;
   iconText: string;
-  id: string; // changed from route to id
+  id: string;
 };
 
 type SidebarProps = {

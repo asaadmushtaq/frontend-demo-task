@@ -12,6 +12,9 @@ import { SubscriptionIcon } from "@/screens/profile-screens/profile/assets/icons
 import MobileView from "./mobile-view";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
+import FormPage from "@/screens/form";
+import ApiDataPage from "@/screens/api-data";
+import { TextListPage } from "@/screens/text-list";
 
 const SectionsList = [
   {
@@ -49,15 +52,19 @@ export const DashboardLayout = ({
   };
 
   const renderContent = () => {
-    switch (activeTab) {
-      case "form":
-        return <div>Form</div>;
-      case "text-list":
-        return <div>Text List</div>;
-      case "api-data":
-        return <div>API Data</div>;
-      default:
-        return <div>Form</div>;
+    try {
+      switch (activeTab) {
+        case "form":
+          return <FormPage />;
+        case "text-list":
+          return <TextListPage />;
+        case "api-data":
+          return <ApiDataPage />;
+        default:
+          return <FormPage />;
+      }
+    } catch (error) {
+      return <Text>Error loading content</Text>;
     }
   };
 
