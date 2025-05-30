@@ -30,7 +30,7 @@ export default function MobileView({
 
       <HStack
         className={cn(
-          "bg-background-0 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center border-t border-t-border-300 md:hidden",
+          "bg-background-900 justify-between w-full absolute left-0 bottom-0 right-0 p-3 overflow-hidden items-center border-t border-t-border-700 space-x-2 md:hidden",
           { "pb-5": Platform.OS === "ios" || Platform.OS === "android" }
         )}
       >
@@ -41,27 +41,29 @@ export default function MobileView({
             <Pressable
               key={index}
               className={cn(
-                "px-2 py-1 flex-1 flex-col items-center rounded-lg transition-colors duration-200 ease-in-out",
+                "px-2 py-1 flex-1 flex-col items-center rounded-lg transition-colors duration-300 ease-in-out",
                 {
-                  "bg-background-950 shadow-md": isActive,
-                  "bg-transparent": !isActive,
+                  "bg-custom-gradient shadow-lg": isActive,
+                  "bg-background-900 hover:bg-custom-gradient": !isActive,
                 }
               )}
               onPress={() => onTabSelect(item.id)}
             >
-              <Icon
-                as={item.iconName}
-                size="lg"
-                className={cn({
-                  "stroke-background-0 fill-background-0": isActive,
-                  "stroke-typography-600 fill-none": !isActive,
+              <item.iconName
+                size={24}
+                className={cn("transition-colors duration-300", {
+                  "text-white": isActive,
+                  "text-gray-400": !isActive,
                 })}
               />
               <Text
-                className={cn("text-xs text-center mt-1", {
-                  "text-typography-0": isActive,
-                  "text-typography-600": !isActive,
-                })}
+                className={cn(
+                  "text-xs text-center mt-1 font-semibold transition-colors duration-300",
+                  {
+                    "text-white": isActive,
+                    "text-gray-300": !isActive,
+                  }
+                )}
               >
                 {item.iconText}
               </Text>

@@ -25,7 +25,7 @@ const ApiDataPage = () => {
       setError("");
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
 
         const url = simulateError
           ? "https://jsonplaceholder.typicode.com/invalid-endpoint"
@@ -50,8 +50,7 @@ const ApiDataPage = () => {
   if (loading)
     return (
       <VStack className="w-full h-full justify-center items-center">
-        <Spinner size="large" />
-        <Text className="mt-4">Loading users...</Text>
+        <Spinner size="large" color="#11998E" />
       </VStack>
     );
 
@@ -66,19 +65,22 @@ const ApiDataPage = () => {
 
   return (
     <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
-      <VStack space="md" className="w-full max-w-lg mx-auto">
-        <Heading size="lg" className="mb-4">
+      <VStack space="md" className="w-full">
+        <Heading size="lg" className="mb-4 text-center">
           Data List
         </Heading>
-        {users.map((user) => (
-          <Box
-            key={user.id}
-            className="p-4 border border-border-300 rounded-lg bg-background-1"
-          >
-            <Text className="font-semibold">{user.name}</Text>
-            <Text className="text-sm text-typography-500">{user.email}</Text>
-          </Box>
-        ))}
+
+        <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+          {users.map((user) => (
+            <Box
+              key={user.id}
+              className="p-4 rounded-lg bg-[#DFF6DD] shadow-[ -4px_-4px_6px_#ffffff,4px_4px_6px_#a3b18a ]"
+            >
+              <Text className="font-semibold">{user.name}</Text>
+              <Text className="text-sm text-typography-500">{user.email}</Text>
+            </Box>
+          ))}
+        </Box>
       </VStack>
     </ScrollView>
   );

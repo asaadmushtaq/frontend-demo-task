@@ -6,29 +6,27 @@ import { Icon, MenuIcon } from "@/components/ui/icon";
 import { HStack } from "@/components/ui/hstack";
 import { Box } from "@/components/ui/box";
 import { Sidebar } from "./sidebar";
-import { NewsBlogIcon } from "@/screens/profile-screens/profile/assets/icons/news-blog";
-import { FaqIcon } from "@/screens/profile-screens/profile/assets/icons/faq";
-import { SubscriptionIcon } from "@/screens/profile-screens/profile/assets/icons/subscription";
 import MobileView from "./mobile-view";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import FormPage from "@/screens/form";
 import ApiDataPage from "@/screens/api-data";
 import { TextListPage } from "@/screens/text-list";
+import { FiFileText, FiList, FiDatabase } from "react-icons/fi";
 
 const SectionsList = [
   {
-    iconName: NewsBlogIcon,
+    iconName: FiFileText,
     iconText: "Form",
     id: "form",
   },
   {
-    iconName: FaqIcon,
+    iconName: FiList,
     iconText: "Text List",
     id: "text-list",
   },
   {
-    iconName: SubscriptionIcon,
+    iconName: FiDatabase,
     iconText: "API Data",
     id: "api-data",
   },
@@ -71,23 +69,31 @@ export const DashboardLayout = ({
   return (
     <SafeAreaView className="h-full w-full">
       <VStack className="h-full w-full bg-background-0">
-        <HStack className="px-4 py-4 border-b border-border-300 items-center bg-background-0 md:px-6">
+        <HStack className="bg-custom-gradient px-4 py-4 items-center backdrop-blur-md md:px-6 shadow-lg z-10">
           <Pressable onPress={toggleSidebar} className="mr-4 hidden md:flex">
-            <Icon as={MenuIcon} size="lg" />
+            <Icon as={MenuIcon} size="lg" color="white" />
           </Pressable>
-          <Text className="text-xl font-semibold">Frontend Developer Task</Text>
+          <Text
+            className="text-xl font-semibold text-white"
+            style={{ userSelect: "none" }}
+          >
+            Frontend Developer Task
+          </Text>
         </HStack>
 
         <HStack className="h-full w-full">
-          <Box className="hidden md:flex h-full">
-            {showSidebar && (
-              <Sidebar
-                sidebarItems={SectionsList}
-                activeTab={activeTab}
-                onTabSelect={onTabSelect}
-              />
-            )}
+          <Box
+            className={`hidden md:flex h-full transition-all duration-300 ease-in-out ${
+              showSidebar ? "w-64 opacity-100" : "w-0 opacity-0"
+            } overflow-hidden`}
+          >
+            <Sidebar
+              sidebarItems={SectionsList}
+              activeTab={activeTab}
+              onTabSelect={onTabSelect}
+            />
           </Box>
+
           <VStack className="w-full flex-1">
             <ScrollView
               showsVerticalScrollIndicator={false}
